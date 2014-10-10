@@ -1,5 +1,3 @@
-// Playground - noun: a place where people can play
-
 import Cocoa
 import AVFoundation
 import AVKit
@@ -17,7 +15,8 @@ session.commitConfiguration()
 
 var input : AVCaptureDeviceInput! = nil
 var err : NSError?
-var devices : AVCaptureDevice[] = AVCaptureDevice.devices() as AVCaptureDevice[]
+var devices : [AVCaptureDevice] = AVCaptureDevice.devices() as [AVCaptureDevice]
+
 for device in devices {
     if device.hasMediaType(AVMediaTypeVideo) && device.supportsAVCaptureSessionPreset(AVCaptureSessionPreset640x480) {
 
@@ -30,7 +29,7 @@ for device in devices {
     }
 }
 
-var settings = [kCVPixelBufferPixelFormatTypeKey:kCVPixelFormatType_32BGRA]
+var settings = [kCVPixelBufferPixelFormatTypeKey as NSString:kCVPixelFormatType_32BGRA]
 
 var output = AVCaptureVideoDataOutput()
 output.videoSettings = settings
