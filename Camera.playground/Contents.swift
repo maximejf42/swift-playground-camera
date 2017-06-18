@@ -2,7 +2,7 @@ import Cocoa
 import AVFoundation
 import AVKit
 import QuartzCore
-import XCPlayground
+import PlaygroundSupport
 
 let view = NSView(frame: NSRect(x: 0.0, y: 0.0, width: 640.0, height: 480.0))
 
@@ -31,7 +31,7 @@ if let devices : [AVCaptureDevice] = AVCaptureDevice.devices() as? [AVCaptureDev
     }
     
     let output = AVCaptureVideoDataOutput()
-    output.videoSettings = [kCVPixelBufferPixelFormatTypeKey: Int(kCVPixelFormatType_32BGRA)]
+    output.videoSettings = [kCVPixelBufferPixelFormatTypeKey as AnyHashable: Int(kCVPixelFormatType_32BGRA)]
     output.alwaysDiscardsLateVideoFrames = true
     
     if session.canAddOutput(output) {
@@ -45,5 +45,6 @@ if let devices : [AVCaptureDevice] = AVCaptureDevice.devices() as? [AVCaptureDev
     session.startRunning()
     
     //View -> Assistant Editor -> Show Assistant Editor
-    XCPlaygroundPage.currentPage.liveView = view
+    PlaygroundPage.current.liveView = view
+    
 }
